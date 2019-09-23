@@ -15,7 +15,8 @@ export class PollingComponent implements OnInit {
    }
 
   ngOnInit() {
-    console.log(this.pollService.getPoll(1234));
+    this.pollService.getPoll(1234)
+      .subscribe((data) => console.log(data));
   }
 
 }
