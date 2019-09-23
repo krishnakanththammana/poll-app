@@ -1,0 +1,7 @@
+{
+  "name": "poll-app",
+  "description": "poll-app",
+  "repository": "https://github.com/krishnakanththammana/poll-app",
+  "keywords": ["node", "express", "static"],
+  "image": "heroku/nodejs"
+}
