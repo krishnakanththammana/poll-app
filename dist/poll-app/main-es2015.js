@@ -34,6 +34,17 @@ module.exports = "<h1> Poll App</h1>\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/index.js!./src/app/polling/polling.component.html":
+/*!**************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/polling/polling.component.html ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>polling works!</p>\n"
+
+/***/ }),
+
 /***/ "./src/app/app-routing.module.ts":
 /*!***************************************!*\
   !*** ./src/app/app-routing.module.ts ***!
@@ -47,10 +58,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _polling_polling_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./polling/polling.component */ "./src/app/polling/polling.component.ts");
 
 
 
-const routes = [];
+
+const routes = [
+    { path: 'poll', component: _polling_polling_component__WEBPACK_IMPORTED_MODULE_3__["PollingComponent"] },
+    { path: 'poll/:id', component: _polling_polling_component__WEBPACK_IMPORTED_MODULE_3__["PollingComponent"] },
+    { path: '',
+        redirectTo: '/poll',
+        pathMatch: 'full'
+    },
+    { path: '**', component: _polling_polling_component__WEBPACK_IMPORTED_MODULE_3__["PollingComponent"] }
+];
 let AppRoutingModule = class AppRoutingModule {
 };
 AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -119,8 +140,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm2015/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _polling_polling_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./polling/polling.component */ "./src/app/polling/polling.component.ts");
+/* harmony import */ var _services_poll_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./services/poll.service */ "./src/app/services/poll.service.ts");
+
+
+
 
 
 
@@ -131,16 +158,105 @@ let AppModule = class AppModule {
 AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
         declarations: [
-            _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]
+            _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
+            _polling_polling_component__WEBPACK_IMPORTED_MODULE_6__["PollingComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
-            _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"]
+            _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"]
         ],
-        providers: [],
-        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
+        providers: [_services_poll_service__WEBPACK_IMPORTED_MODULE_7__["PollService"]],
+        bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
     })
 ], AppModule);
+
+
+
+/***/ }),
+
+/***/ "./src/app/polling/polling.component.scss":
+/*!************************************************!*\
+  !*** ./src/app/polling/polling.component.scss ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BvbGxpbmcvcG9sbGluZy5jb21wb25lbnQuc2NzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/polling/polling.component.ts":
+/*!**********************************************!*\
+  !*** ./src/app/polling/polling.component.ts ***!
+  \**********************************************/
+/*! exports provided: PollingComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PollingComponent", function() { return PollingComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _services_poll_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/poll.service */ "./src/app/services/poll.service.ts");
+
+
+
+let PollingComponent = class PollingComponent {
+    constructor(_ps) {
+        this.pollService = _ps;
+    }
+    ngOnInit() {
+        console.log(this.pollService.getPoll(1234));
+    }
+};
+PollingComponent.ctorParameters = () => [
+    { type: _services_poll_service__WEBPACK_IMPORTED_MODULE_2__["PollService"] }
+];
+PollingComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-polling',
+        template: __webpack_require__(/*! raw-loader!./polling.component.html */ "./node_modules/raw-loader/index.js!./src/app/polling/polling.component.html"),
+        styles: [__webpack_require__(/*! ./polling.component.scss */ "./src/app/polling/polling.component.scss")]
+    })
+], PollingComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/poll.service.ts":
+/*!******************************************!*\
+  !*** ./src/app/services/poll.service.ts ***!
+  \******************************************/
+/*! exports provided: PollService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PollService", function() { return PollService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+
+
+
+let PollService = class PollService {
+    constructor(http) {
+        this.http = http;
+    }
+    getPoll(pollID) {
+        return this.http.get(`https://lets-poll.herokuapp.com/getPoll?pollID=${pollID}`);
+    }
+};
+PollService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
+];
+PollService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], PollService);
 
 
 

@@ -6,6 +6,11 @@ app.get('/ping', function(req, res) {
   res.send('pong');
 })
 
+app.get('/getPoll', function(req, res) {
+  const pollID = req.query.pollID;
+  res.send(`from service.. your poll id: ${pollID}`);
+})
+
 app.get('/', function(req, res) {
   res.sendFile(__dirname + "/");
 })
